@@ -24,15 +24,42 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
+var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
+    console.log(infile);
+    console.log(instr);
     if(!fs.existsSync(instr)) {
-        console.log("%s does not exist. Exiting.", instr);
-        process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
+        console.log("%s does not exist. checking online...", instr);
+        console.log(process.argv[3]);
+        file_url = process.argv[3];
+        var resultx = rest.get(file_url).on('complete');
+        console.log(resultx);
+        var result = [1,2];
+        //process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
     }
+    return instr;
+};
+
+var grabHTMLFile = function(url) {
+    console.log(url);
+    //get html
+    
+    var ben = rest.get(url.toString()).on('complete', function(result) {
+      if (result instanceof Error) {
+        sys.puts('Error: ' + result.message);
+        this.retry(5000); // try again after 5 sec
+    } else {
+        fs.writeFile('web.html',result);
+        console.log(result);
+        result;    
+      }
+    });
+    //the file to a var and return it
+    var instr = fs.readFile('web.html');
     return instr;
 };
 
@@ -65,6 +92,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-u, --url <url>', 'url to index.html', clone(grabHTMLFile), HTMLFILE_DEFAULT)
         .parse(process.argv);
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
