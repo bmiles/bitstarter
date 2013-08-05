@@ -93,6 +93,11 @@
       .footer a {
           color: #ccccff;
       }
+      /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */      
+      div.addthis_toolbox {
+        width:180px;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
@@ -183,8 +188,22 @@
             <button class="btn btn-success btn-large">Preorder</button>
           </div>
           <div class="span8 offset2 social">
-            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+              <a class="addthis_button_preferred_1"></a>
+              <a class="addthis_button_preferred_2"></a>
+              <a class="addthis_button_preferred_3"></a>
+              <a class="addthis_button_preferred_4"></a>
+              <a class="addthis_button_compact"></a>
+              <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ffd10607670f96"></script>
+            <!-- AddThis Button END -->            
+            <!--
+<button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
             <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+-->
           </div>
         </div>
       </div>
@@ -217,24 +236,24 @@
             <div class="accordion-group">
              <div class="accordion-heading">
                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-               What does FAQ stand for?
+               I don't understand, what is Chemtrails again?
                </a>
              </div>
              <div id="collapseOne" class="accordion-body collapse">
                <div class="accordion-inner">
-                 frequently asked question.
+                 Chemtrails is a website that allows chemists to efficiently document and reference new molecules that they synthesise and earn credit through citations of their work by other scientists.
                </div>
              </div>
             </div>
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                What's a frequently asked questions?
+                How much will Chemtrails cost?
                 </a>
               </div>
               <div id="collapseTwo" class="accordion-body collapse">
                 <div class="accordion-inner">
-                  A question which is is commonly asked by users.
+                  Chemtrails will be free for any user that publishes their molecules publicly contributing to open science. However we understand that you don't want to publish everything that you do. So for a monthly subscription of £3.00 per month you can create up to 20 private entries per month.
                 </div>
               </div>
             </div>
